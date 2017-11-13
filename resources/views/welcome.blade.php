@@ -10,6 +10,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
+        {{-- Font Awesome --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -81,7 +84,7 @@
                 <div class="title m-b-md">
                     LMS API
                 </div>
-                <h3>Powered by Laravel</h3>
+                <h3>Powered by Dennis with <i class="fa fa-heart" style="color: red;" aria-hidden="true"></i> and <i class="fa fa-beer" style="color: brown;" aria-hidden="true"></i></h3>
             </div>
         </div>
     </body>
