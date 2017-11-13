@@ -40,7 +40,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $course->load('students','lecturers');
+        $course->load('students', 'lecturers');
 
         return $course;
     }
@@ -55,7 +55,7 @@ class CourseController extends Controller
     public function update(UpdateCourse $request, Course $course)
     {
         $course->update($request->all());
-        $course->load('students','lecturers');
+        $course->load('students', 'lecturers');
 
         return $course;
     }
@@ -63,7 +63,7 @@ class CourseController extends Controller
     public function addStudent(Course $course, Student $student)
     {
         $course->students()->syncWithoutDetaching($student);
-        $course->load('students','lecturers');
+        $course->load('students', 'lecturers');
 
         return $course;
     }
@@ -71,7 +71,7 @@ class CourseController extends Controller
     public function removeStudent(Course $course, Student $student)
     {
         $course->students()->detach($student);
-        $course->load('students','lecturers');
+        $course->load('students', 'lecturers');
 
         return $course;
     }
@@ -79,7 +79,7 @@ class CourseController extends Controller
     public function addLecturer(Course $course, Lecturer $lecturer)
     {
         $course->lecturers()->syncWithoutDetaching($lecturer);
-        $course->load('students','lecturers');
+        $course->load('students', 'lecturers');
 
         return $course;
     }
@@ -87,7 +87,7 @@ class CourseController extends Controller
     public function removeLecturer(Course $course, Lecturer $lecturer)
     {
         $course->lecturers()->detach($lecturer);
-        $course->load('students','lecturers');
+        $course->load('students', 'lecturers');
 
         return $course;
     }
@@ -102,7 +102,6 @@ class CourseController extends Controller
     {
         $course->delete();
 
-        return 'deleted';
-
+        return "The course with ID of $courseId has been deleted.";
     }
 }
