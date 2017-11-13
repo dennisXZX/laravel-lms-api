@@ -6,6 +6,7 @@ use App\Course;
 use App\Http\Requests\StoreCourse;
 use App\Http\Requests\UpdateCourse;
 use App\Lecturer;
+use App\Student;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -17,17 +18,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return Course::with(['students', 'lecturers']);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Course::with(['students','lecturers'])->get();
     }
 
     /**
@@ -49,20 +40,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $course->load('students', 'lecturers');
+        $course->load('students','lecturers');
 
         return $course;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Course  $course
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Course $course)
-    {
-        //
     }
 
     /**
@@ -74,8 +54,8 @@ class CourseController extends Controller
      */
     public function update(UpdateCourse $request, Course $course)
     {
-        $course->update($request->only(['name', 'code', 'start_at', 'end_at', 'introduction']));
-        $course->load('students', 'lecturers');
+        $course->update($request->all());
+        $course->load('students','lecturers');
 
         return $course;
     }
@@ -83,7 +63,7 @@ class CourseController extends Controller
     public function addStudent(Course $course, Student $student)
     {
         $course->students()->syncWithoutDetaching($student);
-        $course->load('students', 'lecturers');
+        $course->load('students','lecturers');
 
         return $course;
     }
@@ -91,7 +71,7 @@ class CourseController extends Controller
     public function removeStudent(Course $course, Student $student)
     {
         $course->students()->detach($student);
-        $course->load('students', 'lecturers');
+        $course->load('students','lecturers');
 
         return $course;
     }
@@ -99,7 +79,7 @@ class CourseController extends Controller
     public function addLecturer(Course $course, Lecturer $lecturer)
     {
         $course->lecturers()->syncWithoutDetaching($lecturer);
-        $course->load('students', 'lecturers');
+        $course->load('students','lecturers');
 
         return $course;
     }
@@ -107,7 +87,7 @@ class CourseController extends Controller
     public function removeLecturer(Course $course, Lecturer $lecturer)
     {
         $course->lecturers()->detach($lecturer);
-        $course->load('students', 'lecturers');
+        $course->load('students','lecturers');
 
         return $course;
     }
@@ -120,11 +100,9 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        $courseId = $course->id;
-
         $course->delete();
 
-        return "The course with ID of $courseId has been deleted.";
+        return 'deleted';
 
     }
 }
