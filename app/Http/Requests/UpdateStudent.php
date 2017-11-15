@@ -26,7 +26,7 @@ class UpdateStudent extends FormRequest
         return [
             'first_name' => 'required|max:100',
             'last_name' => 'required|max:100',
-            'email' => 'required|email'
+            'email' => 'required|email',
         ];
     }
 }

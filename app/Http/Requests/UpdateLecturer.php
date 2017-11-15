@@ -13,7 +13,7 @@ class UpdateLecturer extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateLecturer extends FormRequest
     public function rules()
     {
         return [
-            //
+            'first_name'=>'required|max:100',
+            'last_name'=>'required|max:100',
+            'title'=>'required|max:50',
+            'email'=>'required|email',
+            'introduction'=>'required',
         ];
     }
 }

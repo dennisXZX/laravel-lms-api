@@ -13,7 +13,7 @@ class UpdateCourse extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateCourse extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:100',
+            'code' => 'required',
+            'start_at' => 'required|date_format:d/m/Y',
+            'end_at' => 'required|date_format:d/m/Y',
+            'introduction'
         ];
     }
 }
