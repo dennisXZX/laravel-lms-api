@@ -100,6 +100,8 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        $courseId = $course->id;
+
         $course->delete();
 
         return "The course with ID of $courseId has been deleted.";
