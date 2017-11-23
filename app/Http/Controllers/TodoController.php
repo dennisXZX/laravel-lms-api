@@ -14,7 +14,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        return Todo::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Todo::create($request->all());
     }
 
     /**
@@ -46,7 +46,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return $todo;
     }
 
     /**
@@ -69,7 +69,9 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $todo->update($request->only(['name', 'completed']));
+
+        return $todo;
     }
 
     /**
@@ -80,6 +82,10 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todoId = $todo->id;
+
+        $todo->delete();
+
+        return "The todo item with ID of $todoId has been deleted.";
     }
 }

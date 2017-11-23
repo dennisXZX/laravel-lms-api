@@ -21,6 +21,7 @@ Route::group([''], function () {
    Route::resource('lecturers', LecturerController::class);
    Route::resource('students', StudentController::class);
    Route::resource('courses', CourseController::class);
+   Route::resource('todos', TodoController::class);
 
    Route::put('courses/{course}/students/{student}', 'CourseController@addStudent');
    Route::delete('courses/{course}/students/{student}', 'CourseController@removeStudent');
