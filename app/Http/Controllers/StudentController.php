@@ -75,7 +75,7 @@ class StudentController extends Controller
      */
     public function update(UpdateStudent $request, Student $student)
     {
-        $student->update($request->only(['first_name', 'last_name', 'email']));
+        $student->update($request->only(['first_name', 'last_name', 'email', 'gender']));
         $student->load('courses');
 
         return $student;
